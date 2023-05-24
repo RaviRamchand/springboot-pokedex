@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${pokemon.name}"></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link th:href="@{/style/style.css}" rel="stylesheet">
+<link rel="icon" href="/images/pokeball.png">
+</head>
+<body>
+
+	<h1 th:text="${pokemon.name.toUpperCase()} +' STATS'"></h1>
+	<hr>
+
+	<!-- Display Pokemon image -->
+	<div class="pokeImage">
+		<img th:src="${pokemonImage}" th:title="${pokemon.name}">
+	</div>
+
+	<div class="pokeStats">
+		<p th:text="'ID: ' +${pokemon.ID}"></p>
+		<p th:text="'Base Exp: ' +${pokemon.base_experience}"></p>
+		
+		<!-- Loop through types array to get all queried Pokemon types -->
+		<p class="type">
+			<span> <span>Type: <span th:each="t: ${pokemon.types}">
+						<span th:text="*{t.type.name} +','"></span>
+				</span>
+			</span>
+			</span> 
+		</p>
+
+		<!-- Loop through types array to get all queried Pokemon abilities -->
+		<p class="ability">
+			<span> <span>Ability: <span
+					th:each="t: ${pokemon.abilities}"> <span
+						th:text="*{t.ability.name} +','"></span>
+				</span>
+			</span>
+			</span>
+		</p>
+
+	</div>
+
+	<div class="btn">
+		<a th:href="@{/}"><button>Find another Pokemon</button></a>
+	</div>
+</body>
+</html>
